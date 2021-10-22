@@ -1,4 +1,4 @@
-# vite-plugin-pages
+# vite-plugin-pages-solid
 
 [![npm](https://img.shields.io/npm/v/vite-plugin-pages-solid?style=flat-square) ![npm bundle size](https://img.shields.io/bundlephobia/min/vite-plugin-pages-solid?style=flat-square) ![npm](https://img.shields.io/npm/dm/vite-plugin-pages-solid?style=flat-square)](https://www.npmjs.com/package/vite-plugin-pages-solid) [![Codecov](https://img.shields.io/codecov/c/github/aldy505/vite-plugin-pages-solid?style=flat-square)](https://codecov.io/gh/aldy505/vite-plugin-pages-solid) [![GitHub branch checks state](https://img.shields.io/github/checks-status/aldy505/vite-plugin-pages-solid/master?style=flat-square)](https://github.com/aldy505/vite-plugin-pages-solid/actions) [![CodeFactor](https://www.codefactor.io/repository/github/aldy505/vite-plugin-pages-solid/badge)](https://www.codefactor.io/repository/github/aldy505/vite-plugin-pages-solid) [![GitHub](https://img.shields.io/github/license/aldy505/vite-plugin-pages-solid?style=flat-square)](https://github.com/aldy505/vite-plugin-pages-solid/blob/master/LICENSE)
 
