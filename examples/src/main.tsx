@@ -3,7 +3,6 @@ import { Router, useRoutes } from 'solid-app-router';
 import routes from 'virtual:generated-pages-solid';
 
 const Routes = useRoutes(routes);
-console.log(routes);
 render(
   () => (
     <Router>

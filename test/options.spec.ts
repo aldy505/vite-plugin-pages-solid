@@ -14,6 +14,7 @@ test('resolve', async () => {
     pagesDir: 'test/assets/pages',
     root: resolve(),
     syncIndex: true,
+    importMode: 'async',
   });
 });
 

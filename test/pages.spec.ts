@@ -12,6 +12,7 @@ test('resolvePages', async () => {
     pagesDir: 'test/assets/pages',
     extensions: ['jsx', 'tsx', 'ts', 'js'],
     exclude: ['.git', 'node_modules'],
+    importMode: 'async',
     root: process.cwd(),
     extensionsRE: /\.(jsx|tsx|ts|js)/,
     syncIndex: true,

@@ -3,6 +3,7 @@ import type { PreRoute } from './types/route';
 import { haveChildren } from './crawler/crawler';
 import { sortRoute } from './utils/route';
 import { pathToName } from './utils/convert';
+import { ImportMode } from '.';
 
 interface StringifyOutput {
   imp: string[];
@@ -14,12 +15,12 @@ interface StringifyOutput {
  * @param {PreRoute[]} preparedRoutes
  * @returns {StringifyOutput}
  */
-export function stringifyRoutes(preparedRoutes: PreRoute[]): StringifyOutput {
+export function stringifyRoutes(preparedRoutes: PreRoute[], mode: ImportMode): StringifyOutput {
   const imports: string[] = [];
   let stringRoutes = '[';
 
   for (const route of preparedRoutes) {
-    const { out, imp } = compileRouteItem(route);
+    const { out, imp } = compileRouteItem(route, mode);
     stringRoutes += out;
     imports.push(...imp);
   }
@@ -38,23 +39,31 @@ export function stringifyRoutes(preparedRoutes: PreRoute[]): StringifyOutput {
  * @param {PreRoute} route A single PreRoute object
  * @returns {String} To be used by stringifyRoute function
  */
-function compileRouteItem(route: PreRoute): StringifyOutput {
+function compileRouteItem(route: PreRoute, mode: ImportMode): StringifyOutput {
   let out = '{ ';
   const imp: string[] = [];
 
   if (haveChildren(route as FileOutput)) {
-    const children = route.children?.sort(sortRoute).map((o) => compileRouteItem(o)) as StringifyOutput[];
+    const children = route.children?.sort(sortRoute).map((o) => compileRouteItem(o, mode)) as StringifyOutput[];
     const nestedRoutes: string[] = [...children.map((o) => o.out)];
-    out += `path: "${route.name}", children: [${nestedRoutes.join(',')}]`;
-    const imps = children?.map((o) => o.imp).flat() as string[];
-    imp.push(...imps);
-  } else {
-    const importName = pathToName(route.path as string);
-    const importStr = `import ${importName} from "${route.path}"`;
-    if (!imp.includes(importStr)) {
-      imp.push(importStr);
+    if (mode === 'sync') {
+      out += `path: "${route.name}", children: [${nestedRoutes.join('')}]`;
+      const imps = children?.map((o) => o.imp).flat() as string[];
+      imp.push(...imps);
+    } else {
+      out += `path: "${route.name}", children: [${nestedRoutes.join('')}]`;
     }
-    out += `path: "${route.name}", component: ${importName}`;
+  } else {
+    if (mode === 'sync') {
+      const importName = pathToName(route.path as string);
+      const importStr = `import ${importName} from "${route.path}"`;
+      if (!imp.includes(importStr)) {
+        imp.push(importStr);
+      }
+      out += `path: "${route.name}", component: ${importName}`;
+    } else {
+      out += `path: "${route.name}", component: lazy(() => import("${route.path}"))`;
+    }
   }
 
   out += '},\n';

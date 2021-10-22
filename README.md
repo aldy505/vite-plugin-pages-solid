@@ -160,7 +160,7 @@ Can be:
 
 - **Type:** `string[]`
 - **Default:**
-  - `['solid']`
+  - `['js', 'jsx', 'ts', 'tsx']`
 
 An array of valid file extensions for pages.
 
@@ -176,10 +176,10 @@ An array of glob patterns to exclude matches.
 src/pages/
   ├── users/
   │  ├── components
-  │  │  └── form.solid
-  │  ├── [id].solid
-  │  └── index.solid
-  └── home.solid
+  │  │  └── form.js
+  │  ├── [id].jsx
+  │  └── index.jsx
+  └── home.jsx
 ```
 
 ```js
@@ -195,4 +195,4 @@ export default {
 
 ## License
 
-MIT License © 2021 [hannoeru](https://github.com/hannoeru)
+[MIT](./LICENSE)

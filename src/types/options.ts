@@ -17,6 +17,10 @@ interface Options {
    */
   exclude: string[];
   /**
+   * Import mode, whether it be async or sync
+   */
+  importMode: 'sync' | 'async';
+  /**
    * Sync load top level index file
    * @default true
    */

@@ -8,7 +8,7 @@ import { slash } from './utils/convert';
  * @returns
  */
 export async function resolveOptions(userOptions: UserOptions, viteRoot?: string): Promise<ResolvedOptions> {
-  const { pagesDir = 'src/pages', exclude = [], syncIndex = true } = userOptions;
+  const { pagesDir = 'src/pages', exclude = [], syncIndex = true, importMode = 'async' } = userOptions;
 
   const root = viteRoot || slash(process.cwd());
 
@@ -19,6 +19,7 @@ export async function resolveOptions(userOptions: UserOptions, viteRoot?: string
   const resolvedOptions: ResolvedOptions = {
     pagesDir,
     root,
+    importMode,
     extensions,
     exclude,
     syncIndex,

@@ -5,6 +5,7 @@ import { stringifyRoutes } from './stringify';
 import { haveChildren } from './crawler/crawler';
 import { extname } from 'path';
 import { sortRoute } from './utils/route';
+import type { ResolvedOptions } from './types/options';
 
 /**
  * Generate
@@ -61,13 +62,19 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
  * @param {PreRoute[]} routes
  * @returns {String}
  */
-export function generateClientCode(routes: PreRoute[]): string {
-  const { imp, out } = stringifyRoutes(routes.sort(sortRoute));
+export function generateClientCode(routes: PreRoute[], options: ResolvedOptions): string {
+  const { importMode } = options;
+  const { imp, out } = stringifyRoutes(routes.sort(sortRoute), importMode);
+  let code = '';
 
-  return (
-    `import {lazy} from 'solid-js';\n` +
-    `${imp.join(';\n')}${imp.length > 1 ? ';' : ''}\n\n` +
-    `const routes = ${out};\n\n` +
-    `export default routes;`
-  );
+  if (importMode === 'async') {
+    code += 'import {lazy} from "solid-js";\n';
+  } else {
+    code += `${imp.join(';\n')}${imp.length > 1 ? ';' : ''}\n\n`;
+  }
+
+  code += `const routes = ${out};\n\n`;
+  code += `export default routes;`;
+
+  return code;
 }

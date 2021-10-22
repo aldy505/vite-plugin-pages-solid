@@ -38,7 +38,7 @@ function pagesPlugin(userOptions: UserOptions = {}): Plugin {
         generatedRoutes = generateRoutes(pages);
       }
 
-      const clientCode = generateClientCode(generatedRoutes);
+      const clientCode = generateClientCode(generatedRoutes, options);
       debug.gen('client code: %O', clientCode);
 
       return clientCode;
