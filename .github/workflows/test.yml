@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: ESLint Check
+        run: npx eslint --ext .js,.ts --ignore-path .gitignore .
+
+      - name: Prettier Check
+        run: npx prettier --check --ignore-path .gitignore .
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+
+      - name: Build Test
+        run: npm run build
+
+      - name: Test
+        run: npm run test
+
+      - uses: codecov/codecov-action@v2

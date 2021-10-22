@@ -1,0 +1,68 @@
+{
+  "name": "vite-plugin-pages-solid",
+  "version": "0.0.1",
+  "description": "File system based routing for Vite + Solid",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldy505/vite-plugin-pages-solid.git"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "author": "Reinaldy Rafli <aldy505@tutanota.com>",
+  "files": [
+    "dist",
+    "client.d.ts"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/aldy505/vite-plugin-pages-solid",
+  "bugs": "https://github.com/aldy505/vite-plugin-pages-solid/issues",
+  "scripts": {
+    "dev": "npm run build -- --watch --ignore-watch examples",
+    "build": "npm run build-cjs && npm run build-esm",
+    "build-cjs": "tsup src/index.ts --dts --format cjs --no-splitting",
+    "build-esm": "tsup src/index.ts --format esm --no-splitting --target node13.2",
+    "prepublishOnly": "npm run build",
+    "example:dev": "npm run dev --workspace=examples",
+    "example:build": "npm run build --workspace=examples",
+    "example:serve": "npm run serve --workspace=examples",
+    "test": "c8 uvu -r ts-node/register test .spec.ts",
+    "lint": "eslint --fix --ext .js,.ts,.vue,.json --ignore-path .gitignore .",
+    "format": "prettier --write --ignore-path .gitignore .",
+    "prepare": "husky install"
+  },
+  "workspaces": [
+    "examples"
+  ],
+  "peerDependencies": {
+    "solid-app-router": ">=0",
+    "vite": ">=2"
+  },
+  "dependencies": {
+    "debug": "4.3.2"
+  },
+  "devDependencies": {
+    "@types/debug": "4.1.7",
+    "@types/node": "16.11.1",
+    "@typescript-eslint/eslint-plugin": "4.31.1",
+    "@typescript-eslint/parser": "4.31.1",
+    "c8": "^7.10.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "husky": "7.0.2",
+    "prettier": "2.4.1",
+    "rollup": "2.58.0",
+    "ts-node": "10.3.0",
+    "tsup": "5.4.2",
+    "typescript": "4.4.4",
+    "uvu": "^0.5.2",
+    "vite": "2.5.1"
+  }
+}
