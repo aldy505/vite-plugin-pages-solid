@@ -169,7 +169,7 @@ An array of valid file extensions for pages.
 - **Type:** `string[]`
 - **Default:** `[]`
 
-An array of glob patterns to exclude matches.
+An array of string (not globs) patterns to exclude matches.
 
 ```bash
 # folder structure
@@ -192,6 +192,13 @@ export default {
   ],
 };
 ```
+
+### importMode
+
+- **Type:** `"sync" | "async"`
+- **Default:** `"async"`
+
+Lets you choose whether to import everything dynamically or not.
 
 ## License
 
