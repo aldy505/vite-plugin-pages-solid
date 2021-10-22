@@ -34,7 +34,7 @@ export default defineConfig({
 
 ## Overview
 
-By default a page is a solid component exported from a `.solid` file in the
+By default a page is a Solid component exported from a `.jsx`, `.js`, `.ts` or `.tsx` file in the
 `src/pages` directory.
 
 You can access the generated routes by importing the `virtual:generated-pages-solid`
@@ -74,27 +74,27 @@ Inspired by the routing from
 Pages will automatically map files from your pages directory to a route with the
 same name:
 
-- `src/pages/users.solid` -> `/users`
-- `src/pages/users/profile.solid` -> `/users/profile`
-- `src/pages/settings.solid` -> `/settings`
+- `src/pages/users.jsx` -> `/users`
+- `src/pages/users/profile.jsx` -> `/users/profile`
+- `src/pages/settings.jsx` -> `/settings`
 
 ### Index Routes
 
 Files with the name `index` are treated as the index page of a route:
 
-- `src/pages/index.solid` -> `/`
-- `src/pages/users/index.solid` -> `/users`
+- `src/pages/index.jsx` -> `/`
+- `src/pages/users/index.jsx` -> `/users`
 
 ### Dynamic Routes
 
 Dynamic routes are denoted using square brackets. Both directories and pages can
 be dynamic:
 
-- `src/pages/users/[id].solid` -> `/users/:id` (`/users/one`)
-- `src/pages/[user]/settings.solid` -> `/:user/settings` (`/one/settings`)
+- `src/pages/users/[id].jsx` -> `/users/:id` (`/users/one`)
+- `src/pages/[user]/settings.jsx` -> `/:user/settings` (`/one/settings`)
 
 Any dynamic parameters will be passed to the page as props. For example, given
-the file `src/pages/users/[id].solid`, the route `/users/abc` will be passed the
+the file `src/pages/users/[id].jsx`, the route `/users/abc` will be passed the
 following props:
 
 ```json
@@ -103,7 +103,7 @@ following props:
 
 ### Nested Routes
 
-We can make use of solid Routers child routes to create nested layouts. The parent
+We can make use of Solid router child routes to create nested layouts. The parent
 component can be defined by giving it the same name as the directory that
 contains your child routes.
 
@@ -112,16 +112,16 @@ For example, this directory structure:
 ```
 src/pages/
   ├── users/
-  │  ├── [id].solid
-  │  └── index.solid
-  └── users.solid
+  │  ├── [id].jsx
+  │  └── index.jsx
+  └── users.jsx
 ```
 
 ### Catch-all Routes
 
 Catch-all routes are denoted with square brackets containing an ellipsis:
 
-- `src/pages/[...all].solid` -> `/*` (`/non-existent-page`)
+- `src/pages/[...all].jsx` -> `/*all` (`/non-existent-page`)
 
 The text after the ellipsis will be used both to name the route, and as the name
 of the prop in which the route parameters are passed.
