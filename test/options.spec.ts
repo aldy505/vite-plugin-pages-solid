@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
+import { normalizePath } from 'vite';
 import { resolveOptions } from '../src/options';
 
 test('resolve', async () => {
@@ -12,7 +13,7 @@ test('resolve', async () => {
     extensions: ['tsx', 'jsx', 'js', 'ts'],
     extensionsRE: /\.(tsx|jsx|js|ts)$/,
     pagesDir: 'test/assets/pages',
-    root: resolve(),
+    root: normalizePath(resolve()),
     syncIndex: true,
     importMode: 'async',
   });

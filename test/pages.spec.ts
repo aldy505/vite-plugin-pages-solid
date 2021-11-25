@@ -3,9 +3,10 @@ import type { FileOutput } from '../src/types/page';
 import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
+import { normalizePath } from 'vite';
 import { addPage, removePage, resolvePages } from '../src/pages';
 
-const currentPath = resolve();
+const currentPath = normalizePath(resolve());
 
 test('resolvePages', async () => {
   const options: ResolvedOptions = {
