@@ -30,7 +30,7 @@ Add to your `vite.config.js`:
 
 ```js
 import { defineConfig } from 'vite';
-import { solid } from '@solidjs/vite-plugin-solid';
+import { solid } from 'vite-plugin-solid';
 import pages from 'vite-plugin-pages-solid';
 
 export default defineConfig({
