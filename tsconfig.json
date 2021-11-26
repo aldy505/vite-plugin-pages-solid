@@ -5,6 +5,7 @@
     "lib": ["ESNext", "DOM"],
     "esModuleInterop": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,

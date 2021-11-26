@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
+import { normalizePath } from 'vite';
 import { slash } from '../src/utils/convert';
 import { getPageFiles, getPageDirs, fromSinglePage } from '../src/files';
 import type { ResolvedOptions } from '../src/types/options';
@@ -8,7 +9,7 @@ import type { ResolvedOptions } from '../src/types/options';
 const testPagesDir = 'test/assets/pages';
 const testDeepPagesDir = 'test/assets/deep-pages';
 
-const currentPath = resolve();
+const currentPath = normalizePath(resolve());
 
 test('getPageFiles', async () => {
   const options: ResolvedOptions = {

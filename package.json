@@ -33,7 +33,7 @@
     "example:build": "npm run build --workspace=examples",
     "example:serve": "npm run serve --workspace=examples",
     "test": "c8 uvu -r ts-node/register test .spec.ts",
-    "lint": "eslint --fix --ext .js,.ts,.vue,.json --ignore-path .gitignore .",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.json --ignore-path .gitignore .",
     "format": "prettier --write --ignore-path .gitignore .",
     "prepare": "husky install"
   },
@@ -59,6 +59,8 @@
     "husky": "7.0.2",
     "prettier": "2.4.1",
     "rollup": "2.58.0",
+    "solid-app-router": "^0.1.13",
+    "solid-js": "^1.2.5",
     "ts-node": "10.3.0",
     "tsup": "5.4.2",
     "typescript": "4.4.4",

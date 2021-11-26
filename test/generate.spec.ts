@@ -1,12 +1,13 @@
 import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
+import { normalizePath } from 'vite';
 import { generateRoutes, generateClientCode } from '../src/generate';
 import { resolvePages } from '../src/pages';
 import { resolveOptions } from '../src/options';
 import { pathToName } from '../src/utils/convert';
 
-const currentPath = resolve();
+const currentPath = normalizePath(resolve());
 const currentPathNormalized = pathToName(currentPath);
 
 test('Routes Sync', async () => {

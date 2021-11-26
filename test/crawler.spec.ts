@@ -1,13 +1,14 @@
 import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
+import { normalizePath } from 'vite';
 import { haveChildren, traverse } from '../src/crawler/crawler';
 import { FileOutput } from '../src/types/page';
 
 const testPagesDir = 'test/assets/pages';
 const testDeepPagesDir = 'test/assets/deep-pages';
 
-const currentPath = resolve();
+const currentPath = normalizePath(resolve());
 
 test('Traverse test page dirs', async () => {
   const result = await traverse(testPagesDir, ['jsx', 'tsx', 'ts', 'js'], []);
