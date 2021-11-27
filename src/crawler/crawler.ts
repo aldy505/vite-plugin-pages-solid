@@ -1,6 +1,7 @@
 import { opendir } from 'fs/promises';
 import { resolve, extname } from 'path';
 import type { FileOutput } from '../types/page';
+import { normalizePath } from 'vite';
 import { containsExtension } from '../utils/validate';
 
 export async function traverse(path: string, extensions: string[], ignore: string[]): Promise<FileOutput[]> {
@@ -10,11 +11,11 @@ export async function traverse(path: string, extensions: string[], ignore: strin
     if (dirent.isFile()) {
       if (ignore.includes(dirent.name)) continue;
       if (extensions.length > 0 && !containsExtension(dirent.name, extensions)) continue;
-      r.push({ path: resolve(path, dirent.name) });
+      r.push({ path: normalizePath(resolve(path, dirent.name)) });
     } else if (dirent.isDirectory()) {
       if (ignore.includes(dirent.name)) continue;
       r.push({
-        path: resolve(path, dirent.name),
+        path: normalizePath(resolve(path, dirent.name)),
         children: await traverse(resolve(path, dirent.name), extensions, ignore),
       });
     }
@@ -24,6 +25,7 @@ export async function traverse(path: string, extensions: string[], ignore: strin
 
 export async function traverseDir(path: string, ignore: string[]): Promise<string[]> {
   // If it's a file, then do nothing.
+  // TODO: This needs to be more thorough. (await dir.read().then(d => d?.isDirectory() ?? false))
   if (extname(path)) return [];
 
   const d: string[] = [];
