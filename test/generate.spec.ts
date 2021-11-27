@@ -145,15 +145,16 @@ test('Route async', async () => {
 
   const expectedRoutes = [
     {
+      name: '/blog',
       children: [
         {
+          name: '/today',
           children: [
             {
               name: '/',
               path: `${currentPath}/test/assets/pages/blog/today/index.jsx`,
             },
           ],
-          name: '/today',
         },
         {
           name: '/',
@@ -164,9 +165,7 @@ test('Route async', async () => {
           path: `${currentPath}/test/assets/pages/blog/[id].jsx`,
         },
       ],
-      name: '/blog',
     },
-
     {
       name: '/components',
       path: `${currentPath}/test/assets/pages/components.tsx`,
@@ -176,13 +175,13 @@ test('Route async', async () => {
       path: `${currentPath}/test/assets/pages/index.tsx`,
     },
     {
+      name: '/about',
       children: [
         {
           name: '/',
           path: `${currentPath}/test/assets/pages/about/index.js`,
         },
       ],
-      name: '/about',
     },
     {
       name: '/:userId',
@@ -206,13 +205,13 @@ test('Route async', async () => {
       path: `${currentPath}/test/assets/pages/[...all].tsx`,
     },
     {
+      name: '/__test__',
       children: [
         {
           name: '/',
           path: `${currentPath}/test/assets/pages/__test__/index.js`,
         },
       ],
-      name: '/__test__',
     },
   ];
 

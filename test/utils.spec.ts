@@ -1,16 +1,16 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { pathToName, toArray } from '../src/utils/convert';
-import { isDynamicRoute, isCatchAllRoute } from '../src/utils/validate';
+import { isDynamicRoute, isMultiRoute } from '../src/utils/validate';
 
-test('Dynamic route', () => {
+test('Dynamic routes', () => {
   assert.equal(isDynamicRoute('[id]'), true);
   assert.equal(isDynamicRoute('me'), false);
 });
 
-test('Catch all route', () => {
-  assert.equal(isCatchAllRoute('[...all]'), true);
-  assert.equal(isCatchAllRoute('[id]'), false);
+test('Multi routes', () => {
+  assert.equal(isMultiRoute('[...all]'), true);
+  assert.equal(isMultiRoute('[id]'), false);
 });
 
 test('Path to name', () => {
