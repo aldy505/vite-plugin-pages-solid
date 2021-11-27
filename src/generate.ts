@@ -1,6 +1,6 @@
 import type { PreRoute } from './types/route';
 import type { FileOutput } from './types/page';
-import { isDynamicRoute, isCatchAllRoute } from './utils/validate';
+import { isDynamicRoute, isMultiRoute } from './utils/validate';
 import { stringifyRoutes } from './stringify';
 import { haveChildren } from './crawler/crawler';
 import { extname } from 'path';
@@ -19,11 +19,11 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
     const node = pages[i].path.split('/')[pages[i].path.split('/').length - 1];
     const fileExt = extname(node);
     const isDynamic = isDynamicRoute(node.replace(fileExt, ''));
-    const isCatchAll = isCatchAllRoute(node.replace(fileExt, ''));
+    const isMulti = isMultiRoute(node.replace(fileExt, ''));
     const normalizedName = isDynamic
       ? node
           .replace(fileExt, '')
-          .replace(/^\[(\.{3})?/, '')
+          .replace(/^\[(?:\.{3})?/, '')
           .replace(/\]$/, '')
       : node.replace(fileExt, '');
     const normalizedPath = normalizedName.toLowerCase();
@@ -31,8 +31,8 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
     if (normalizedPath === 'index') {
       name = '/';
     } else {
-      if (isCatchAll) {
-        name = '/*all';
+      if (isMulti) {
+        name = `/*${normalizedName}`;
       } else if (isDynamic) {
         name = `/:${normalizedName}`;
       } else {

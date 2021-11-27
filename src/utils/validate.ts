@@ -28,21 +28,21 @@ export function isTarget(path: string, options: ResolvedOptions): boolean {
 }
 
 /**
- * Check whether or not a routePath is a type of a dynamic route.
+ * Check whether or not a routePath is a dynamic route.
  * @param {String} routePath
  * @returns {Boolean}
  */
 export function isDynamicRoute(routePath: string): boolean {
-  return /^\[.+\]$/.test(routePath);
+  return /^\[(.+)\]$/.test(routePath);
 }
 
 /**
- * Check whether or not a routePath is a type of catch-all route.
+ * Check whether or not a routePath is a Multi route.
  * @param {String} routePath
  * @returns {Boolean}
  */
-export function isCatchAllRoute(routePath: string): boolean {
-  return /^\[\.{3}all\]$/.test(routePath);
+export function isMultiRoute(routePath: string): boolean {
+  return /^\[\.{3}(.*)\]$/.test(routePath);
 }
 
 /**
