@@ -2,7 +2,7 @@ import type { ViteDevServer } from 'vite';
 import type { ResolvedOptions } from './types/options';
 import type { FileOutput } from './types/page';
 import { isTarget } from './utils/validate';
-import { slash } from './utils/convert';
+import { normalizePath } from 'vite';
 import { getPagesVirtualModule, debug } from './utils/vite';
 import { resolvePages } from './pages';
 
@@ -24,7 +24,7 @@ export function handleHMR(
   }
 
   watcher.on('add', async (file) => {
-    const path = slash(file);
+    const path = normalizePath(file);
     if (isTarget(path, options)) {
       const p = await resolvePages(options);
       pages.length = 0;
@@ -34,7 +34,7 @@ export function handleHMR(
     }
   });
   watcher.on('unlink', async (file) => {
-    const path = slash(file);
+    const path = normalizePath(file);
     if (isTarget(path, options)) {
       const p = await resolvePages(options);
       pages.length = 0;

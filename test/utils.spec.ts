@@ -1,11 +1,7 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { slash, pathToName, toArray } from '../src/utils/convert';
+import { pathToName, toArray } from '../src/utils/convert';
 import { isDynamicRoute, isCatchAllRoute } from '../src/utils/validate';
-
-test('Normalize path', () => {
-  assert.equal(slash('C:\\project\\from\\someone'), 'C:/project/from/someone');
-});
 
 test('Dynamic route', () => {
   assert.equal(isDynamicRoute('[id]'), true);

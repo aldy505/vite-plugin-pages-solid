@@ -1,6 +1,6 @@
 import type { ResolvedOptions } from '../types/options';
 import { resolve, extname } from 'path';
-import { slash } from './convert';
+import { normalizePath } from 'vite';
 
 /**
  * Check if a given path is indeed a directory of pages or not
@@ -10,7 +10,7 @@ import { slash } from './convert';
  */
 function isPagesDir(path: string, options: ResolvedOptions): boolean {
   for (const page of options.pagesDir) {
-    const dirPath = slash(resolve(options.root, page));
+    const dirPath = normalizePath(resolve(options.root, page));
     if (path.startsWith(dirPath)) return true;
   }
   return false;

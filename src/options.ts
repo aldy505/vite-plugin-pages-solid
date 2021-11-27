@@ -1,5 +1,5 @@
 import type { UserOptions, ResolvedOptions } from './types/options';
-import { slash } from './utils/convert';
+import { normalizePath } from 'vite';
 
 /**
  *
@@ -10,7 +10,7 @@ import { slash } from './utils/convert';
 export async function resolveOptions(userOptions: UserOptions, viteRoot?: string): Promise<ResolvedOptions> {
   const { pagesDir = 'src/pages', exclude = [], syncIndex = true, importMode = 'async' } = userOptions;
 
-  const root = viteRoot || slash(process.cwd());
+  const root = viteRoot || normalizePath(process.cwd());
 
   const extensions = userOptions.extensions || ['tsx', 'jsx', 'js', 'ts'];
 

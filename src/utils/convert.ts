@@ -20,18 +20,6 @@ export function replaceSquareBrackets(bundle: OutputBundle): void {
   }
 }
 
-/**
- * This is originally came from @antfu/utils.
- * But have we forget how to program? This is so simple, man!
- *
- * Basically converts Windows-like slashes to UNIX-like.
- * @param {String} str
- * @returns {String}
- */
-export function slash(str: string): string {
-  return str.replace(/\\/g, '/');
-}
-
 type Nullable<T> = T | null | undefined;
 type Arrayable<T> = T | T[];
 
