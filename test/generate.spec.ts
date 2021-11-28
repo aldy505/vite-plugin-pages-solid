@@ -108,11 +108,11 @@ import ${currentPathNormalized}_test_assets_pages_blog_index_jsx from "${current
 import ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx from "${currentPath}/test/assets/pages/blog/today/index.jsx";
 import ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx from "${currentPath}/test/assets/pages/blog/[id].jsx";
 import ${currentPathNormalized}_test_assets_pages_components_tsx from "${currentPath}/test/assets/pages/components.tsx";
+import ${currentPathNormalized}_test_assets_pages___test___index_js from "${currentPath}/test/assets/pages/__test__/index.js";
 import ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts from "${currentPath}/test/assets/pages/[sensor]/current.ts";
 import ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts from "${currentPath}/test/assets/pages/[sensor]/[...all].ts";
 import ${currentPathNormalized}_test_assets_pages_$userId$_tsx from "${currentPath}/test/assets/pages/[userId].tsx";
 import ${currentPathNormalized}_test_assets_pages_$___all$_tsx from "${currentPath}/test/assets/pages/[...all].tsx";
-import ${currentPathNormalized}_test_assets_pages___test___index_js from "${currentPath}/test/assets/pages/__test__/index.js";
 
 const routes = [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_index_tsx},
 { path: "/about", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_about_index_js},
@@ -123,13 +123,13 @@ const routes = [{ path: "/", component: ${currentPathNormalized}_test_assets_pag
 { path: "/:id", component: ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx},
 ]},
 { path: "/components", component: ${currentPathNormalized}_test_assets_pages_components_tsx},
+{ path: "/__test__", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages___test___index_js},
+]},
 { path: "/:sensor", children: [{ path: "/current", component: ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts},
 { path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts},
 ]},
 { path: "/:userId", component: ${currentPathNormalized}_test_assets_pages_$userId$_tsx},
 { path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$___all$_tsx},
-{ path: "/__test__", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages___test___index_js},
-]},
 ];
 
 export default routes;`;
@@ -237,13 +237,13 @@ const routes = [{ path: "/", component: lazy(() => import("${currentPath}/test/a
 { path: "/:id", component: lazy(() => import("${currentPath}/test/assets/pages/blog/[id].jsx"))},
 ]},
 { path: "/components", component: lazy(() => import("${currentPath}/test/assets/pages/components.tsx"))},
+{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/__test__/index.js"))},
+]},
 { path: "/:sensor", children: [{ path: "/current", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/current.ts"))},
 { path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/[...all].ts"))},
 ]},
 { path: "/:userId", component: lazy(() => import("${currentPath}/test/assets/pages/[userId].tsx"))},
 { path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[...all].tsx"))},
-{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/__test__/index.js"))},
-]},
 ];
 
 export default routes;`;

@@ -2,19 +2,19 @@ import type { PrepRoute } from '../types/route';
 
 export function routeValue(route: PrepRoute): number {
   if (route.name === '/') return -1;
-  if (/^\/[A-Za-z0-9]/.test(route.name)) return 0;
+  if (/^\/[A-Za-z0-9\-_]/.test(route.name)) return 0;
   if (/^\/:/.test(route.name)) return 1;
   if (/^\/\*/.test(route.name)) return 2;
-  return 3;
+  return 0;
 }
 
 /**
  * Sort function for prioritizing routes.\
- * First `/` only should be prioritized\
- * Then, it should prioritize `/about` `/contact`\
- * Then, it should prioritize `/:slug` `/:something`\
- * Then, it should prioritize `/*` `/*all`\
- * Then, just return 3 for every other edge case
+ * First, `/` only should be prioritized\
+ * Then, it should prioritize `/about`, `/contact`\
+ * Then, it should prioritize `/:slug`, `/:something`\
+ * Then, it should prioritize `/*`, `/*all`\
+ * Then, just return 0 for every other edge case
  * @returns {Number}
  * @example
  * // Just put the function inside of an array sort function.
