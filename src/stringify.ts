@@ -1,5 +1,5 @@
 import type { FileOutput } from './types/page';
-import type { PreRoute } from './types/route';
+import type { PrepRoute } from './types/route';
 import { haveChildren } from './crawler/crawler';
 import { sortRoute } from './utils/route';
 import { pathToName } from './utils/convert';
@@ -12,10 +12,10 @@ interface StringifyOutput {
 
 /**
  * Creates a stringified Solid App Router route definition.
- * @param {PreRoute[]} preparedRoutes
+ * @param {PrepRoute[]} preparedRoutes
  * @returns {StringifyOutput}
  */
-export function stringifyRoutes(preparedRoutes: PreRoute[], mode: ImportMode): StringifyOutput {
+export function stringifyRoutes(preparedRoutes: PrepRoute[], mode: ImportMode): StringifyOutput {
   const imports: string[] = [];
   let stringRoutes = '[';
 
@@ -36,10 +36,10 @@ export function stringifyRoutes(preparedRoutes: PreRoute[], mode: ImportMode): S
 /**
  * Separate function from the stringifyRoute because I'll need it to run
  * recursively.
- * @param {PreRoute} route A single PreRoute object
+ * @param {PrepRoute} route A single PreRoute object
  * @returns {String} To be used by stringifyRoute function
  */
-function compileRouteItem(route: PreRoute, mode: ImportMode): StringifyOutput {
+function compileRouteItem(route: PrepRoute, mode: ImportMode): StringifyOutput {
   let out = '{ ';
   const imp: string[] = [];
 

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
 import type { ResolvedOptions, UserOptions } from './types/options';
-import type { PreRoute } from './types/route';
+import type { PrepRoute } from './types/route';
 import type { FileOutput } from './types/page';
 import { generateRoutes, generateClientCode } from './generate';
 import { debug } from './utils/vite';
@@ -10,7 +10,7 @@ import { resolvePages } from './pages';
 import { handleHMR } from './hmr';
 
 function pagesPlugin(userOptions: UserOptions = {}): Plugin {
-  let generatedRoutes: PreRoute[] | null = null;
+  let generatedRoutes: PrepRoute[] | null = null;
   let options: ResolvedOptions;
   let pages: FileOutput[];
 

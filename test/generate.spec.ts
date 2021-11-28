@@ -100,7 +100,7 @@ test('Routes Sync', async () => {
   );
 
   //console.log(code);
-  `import·${currentPathNormalized}_test_assets_pages_index_tsx·from·${currentPath}/test/assets/pages/index.tsx";`;
+
   const expectedCode = `import ${currentPathNormalized}_test_assets_pages_index_tsx from ${currentPath}/test/assets/pages/index.tsx";
 import ${currentPathNormalized}_test_assets_pages_components_tsx from ${currentPath}/test/assets/pages/components.tsx";
 import ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx from ${currentPath}/test/assets/pages/blog/today/index.jsx";
@@ -164,6 +164,9 @@ const routes = [{ path: "/blog", children: [{ path: "/today", children: [{ path:
 
 export default routes;`;*/
 
+  console.log('Code Equals: ', code.normalize() === expectedCode.normalize());
+
+  // FIXME: This is not equal, but I don't know why!
   assert.fixture(code.normalize(), expectedCode.normalize());
 });
 

@@ -33,6 +33,8 @@
     "example:build": "npm run build --workspace=examples",
     "example:serve": "npm run serve --workspace=examples",
     "test": "c8 uvu -r ts-node/register test .spec.ts",
+    "test:noCov": "uvu -r ts-node/register test .spec.ts",
+    "test:one": "uvu -r ts-node/register test",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.json --ignore-path .gitignore .",
     "format": "prettier --write --ignore-path .gitignore .",
     "prepare": "husky install"

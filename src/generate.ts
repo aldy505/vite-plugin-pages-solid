@@ -1,4 +1,4 @@
-import type { PreRoute } from './types/route';
+import type { PrepRoute } from './types/route';
 import type { FileOutput } from './types/page';
 import { isDynamicRoute, isMultiRoute } from './utils/validate';
 import { stringifyRoutes } from './stringify';
@@ -12,8 +12,8 @@ import type { ResolvedOptions } from './types/options';
  * @param pages
  * @returns
  */
-export function generateRoutes(pages: FileOutput[]): PreRoute[] {
-  const routes: PreRoute[] = [];
+export function generateRoutes(pages: FileOutput[]): PrepRoute[] {
+  const routes: PrepRoute[] = [];
 
   for (let i = 0; i < pages.length; i++) {
     const node = pages[i].path.split('/')[pages[i].path.split('/').length - 1];
@@ -59,10 +59,10 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
 
 /**
  * This pretty much acts as a final codegen for it to be executed by Vite.
- * @param {PreRoute[]} routes
+ * @param {PrepRoute[]} routes
  * @returns {String}
  */
-export function generateClientCode(routes: PreRoute[], options: ResolvedOptions): string {
+export function generateClientCode(routes: PrepRoute[], options: ResolvedOptions): string {
   const { importMode } = options;
   const { imp, out } = stringifyRoutes(routes.sort(sortRoute), importMode);
   let code = '';
