@@ -256,13 +256,13 @@ test('Route async', async () => {
   );
 
   const expectedCode = `import {lazy} from "solid-js";
-const routes = [{ path: "/blog", children: [{ path: "/today", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/today/index.jsx"))},
+const routes = [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/index.tsx"))},
+{ path: "/components", component: lazy(() => import("${currentPath}/test/assets/pages/components.tsx"))},
+{ path: "/blog", children: [{ path: "/today", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/today/index.jsx"))},
 ]},
 { path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/index.jsx"))},
 { path: "/:id", component: lazy(() => import("${currentPath}/test/assets/pages/blog/[id].jsx"))},
 ]},
-{ path: "/components", component: lazy(() => import("${currentPath}/test/assets/pages/components.tsx"))},
-{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/index.tsx"))},
 { path: "/about", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/about/index.js"))},
 ]},
 { path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[...all].tsx"))},
