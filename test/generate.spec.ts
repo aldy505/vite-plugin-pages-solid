@@ -102,72 +102,40 @@ test('Routes Sync', async () => {
 
   //console.log(code);
 
-  const expectedCode = `import ${currentPathNormalized}_test_assets_pages_index_tsx from ${currentPath}/test/assets/pages/index.tsx";
-import ${currentPathNormalized}_test_assets_pages_components_tsx from ${currentPath}/test/assets/pages/components.tsx";
-import ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx from ${currentPath}/test/assets/pages/blog/today/index.jsx";
-import ${currentPathNormalized}_test_assets_pages_blog_index_jsx from ${currentPath}/test/assets/pages/blog/index.jsx";
-import ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx from ${currentPath}/test/assets/pages/blog/[id].jsx";
-import ${currentPathNormalized}_test_assets_pages_about_index_js from ${currentPath}/test/assets/pages/about/index.js";
-import ${currentPathNormalized}_test_assets_pages_$___all$_tsx from ${currentPath}/test/assets/pages/[...all].tsx";
-import ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts from ${currentPath}/test/assets/pages/[sensor]/current.ts";
-import ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts from ${currentPath}/test/assets/pages/[sensor]/[...all].ts";
-import ${currentPathNormalized}_test_assets_pages_$userId$_tsx from ${currentPath}/test/assets/pages/[userId].tsx";
-import ${currentPathNormalized}_test_assets_pages___test___index_js from ${currentPath}/test/assets/pages/__test__/index.js";
+  const expectedCode = `import ${currentPathNormalized}_test_assets_pages_index_tsx from "${currentPath}/test/assets/pages/index.tsx";
+import ${currentPathNormalized}_test_assets_pages_about_index_js from "${currentPath}/test/assets/pages/about/index.js";
+import ${currentPathNormalized}_test_assets_pages_blog_index_jsx from "${currentPath}/test/assets/pages/blog/index.jsx";
+import ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx from "${currentPath}/test/assets/pages/blog/today/index.jsx";
+import ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx from "${currentPath}/test/assets/pages/blog/[id].jsx";
+import ${currentPathNormalized}_test_assets_pages_components_tsx from "${currentPath}/test/assets/pages/components.tsx";
+import ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts from "${currentPath}/test/assets/pages/[sensor]/current.ts";
+import ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts from "${currentPath}/test/assets/pages/[sensor]/[...all].ts";
+import ${currentPathNormalized}_test_assets_pages_$userId$_tsx from "${currentPath}/test/assets/pages/[userId].tsx";
+import ${currentPathNormalized}_test_assets_pages_$___all$_tsx from "${currentPath}/test/assets/pages/[...all].tsx";
+import ${currentPathNormalized}_test_assets_pages___test___index_js from "${currentPath}/test/assets/pages/__test__/index.js";
 
 const routes = [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_index_tsx},
-{ path: "/components", component: ${currentPathNormalized}_test_assets_pages_components_tsx},
-{ path: "/blog", children: [{ path: "/today", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx},
-]},
-{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_index_jsx},
-{ path: "/:id", component: ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx},
-]},
 { path: "/about", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_about_index_js},
 ]},
-{ path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$___all$_tsx},
+{ path: "/blog", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_index_jsx},
+{ path: "/today", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx},
+]},
+{ path: "/:id", component: ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx},
+]},
+{ path: "/components", component: ${currentPathNormalized}_test_assets_pages_components_tsx},
 { path: "/:sensor", children: [{ path: "/current", component: ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts},
 { path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts},
 ]},
 { path: "/:userId", component: ${currentPathNormalized}_test_assets_pages_$userId$_tsx},
+{ path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$___all$_tsx},
 { path: "/__test__", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages___test___index_js},
 ]},
 ];
 
 export default routes;`;
-  /*`import ${currentPathNormalized}_test_assets_pages_index_tsx from "${currentPath}/test/assets/pages/index.tsx";
-import ${currentPathNormalized}_test_assets_pages_components_tsx from "${currentPath}/test/assets/pages/components.tsx";
-import ${currentPathNormalized}_test_assets_pages_blog_index_jsx from "${currentPath}/test/assets/pages/blog/index.jsx";
-import ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx from "${currentPath}/test/assets/pages/blog/today/index.jsx";
-import ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx from "${currentPath}/test/assets/pages/blog/[id].jsx";
-import ${currentPathNormalized}_test_assets_pages_about_index_js from "${currentPath}/test/assets/pages/about/index.js";
-import ${currentPathNormalized}_test_assets_pages___test___index_js from "${currentPath}/test/assets/pages/__test__/index.js";
-import ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts from "${currentPath}/test/assets/pages/[sensor]/current.ts";
-import ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts from "${currentPath}/test/assets/pages/[sensor]/[...all].ts";
-import ${currentPathNormalized}_test_assets_pages_$userId$_tsx from "${currentPath}/test/assets/pages/[userId].tsx";
-import ${currentPathNormalized}_test_assets_pages_$___all$_tsx from "${currentPath}/test/assets/pages/[...all].tsx";
 
-const routes = [{ path: "/blog", children: [{ path: "/today", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_today_index_jsx},
-]},
-{ path: "/", component: ${currentPathNormalized}_test_assets_pages_blog_index_jsx},
-{ path: "/:id", component: ${currentPathNormalized}_test_assets_pages_blog_$id$_jsx},
-]},
-{ path: "/components", component: ${currentPathNormalized}_test_assets_pages_components_tsx},
-{ path: "/", component: ${currentPathNormalized}_test_assets_pages_index_tsx},
-{ path: "/about", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages_about_index_js},
-]},
-{ path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$___all$_tsx},
-{ path: "/:sensor", children: [{ path: "/current", component: ${currentPathNormalized}_test_assets_pages_$sensor$_current_ts},
-{ path: "/*all", component: ${currentPathNormalized}_test_assets_pages_$sensor$_$___all$_ts},
-]},
-{ path: "/:userId", component: ${currentPathNormalized}_test_assets_pages_$userId$_tsx},
-{ path: "/__test__", children: [{ path: "/", component: ${currentPathNormalized}_test_assets_pages___test___index_js},
-]},
-];
+  //console.log(code);
 
-export default routes;`;*/
-
-  console.log('Code Equals: ', code.normalize() === expectedCode.normalize());
-
-  // FIXME: This is not equal, but I don't know why!
   assert.fixture(code.normalize(), expectedCode.normalize());
 });
 
@@ -260,21 +228,21 @@ test('Route async', async () => {
   );
 
   const expectedCode = `import {lazy} from "solid-js";
-const routes = [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/index.tsx"))},
-{ path: "/about", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/about/index.js"))},
+const routes = [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/index.tsx"))},
+{ path: "/about", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/about/index.js"))},
 ]},
-{ path: "/blog", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/index.jsx"))},
-{ path: "/today", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/today/index.jsx"))},
+{ path: "/blog", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/index.jsx"))},
+{ path: "/today", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/today/index.jsx"))},
 ]},
-{ path: "/:id", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/[id].jsx"))},
+{ path: "/:id", component: lazy(() => import("${currentPath}/test/assets/pages/blog/[id].jsx"))},
 ]},
-{ path: "/components", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/components.tsx"))},
-{ path: "/:sensor", children: [{ path: "/current", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[sensor]/current.ts"))},
-{ path: "/*all", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[sensor]/[...all].ts"))},
+{ path: "/components", component: lazy(() => import("${currentPath}/test/assets/pages/components.tsx"))},
+{ path: "/:sensor", children: [{ path: "/current", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/current.ts"))},
+{ path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/[...all].ts"))},
 ]},
-{ path: "/:userId", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[userId].tsx"))},
-{ path: "/*all", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[...all].tsx"))},
-{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/__test__/index.js"))},
+{ path: "/:userId", component: lazy(() => import("${currentPath}/test/assets/pages/[userId].tsx"))},
+{ path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[...all].tsx"))},
+{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/__test__/index.js"))},
 ]},
 ];
 
