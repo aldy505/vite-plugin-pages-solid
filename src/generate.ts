@@ -4,7 +4,7 @@ import { isDynamicRoute, isMultiRoute } from './utils/validate';
 import { stringifyRoutes } from './stringify';
 import { haveChildren } from './crawler/crawler';
 import { extname } from 'path';
-import { sortRoute } from './utils/route';
+import { sortRoutes } from './utils/route';
 import type { ResolvedOptions } from './types/options';
 
 /**
@@ -64,7 +64,7 @@ export function generateRoutes(pages: FileOutput[]): PrepRoute[] {
  */
 export function generateClientCode(routes: PrepRoute[], options: ResolvedOptions): string {
   const { importMode } = options;
-  const { imp, out } = stringifyRoutes(routes.sort(sortRoute), importMode);
+  const { imp, out } = stringifyRoutes(sortRoutes(routes), importMode);
   let code = '';
 
   if (importMode === 'async') {

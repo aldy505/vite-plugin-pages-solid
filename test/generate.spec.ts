@@ -6,6 +6,7 @@ import { generateRoutes, generateClientCode } from '../src/generate';
 import { resolvePages } from '../src/pages';
 import { resolveOptions } from '../src/options';
 import { pathToName } from '../src/utils/convert';
+import { sortRoutes } from '../src/utils/route';
 
 const currentPath = normalizePath(resolve());
 const currentPathNormalized = pathToName(currentPath);
@@ -19,7 +20,7 @@ test('Routes Sync', async () => {
   const routes = generateRoutes(pages);
   const code = generateClientCode(routes, options);
 
-  const expectedRoutes = [
+  const expectedRoutes = sortRoutes([
     {
       children: [
         {
@@ -90,7 +91,7 @@ test('Routes Sync', async () => {
       ],
       name: '/__test__',
     },
-  ];
+  ]);
 
   expectedRoutes.forEach((i) =>
     assert.equal(
@@ -179,7 +180,7 @@ test('Route async', async () => {
   const routes = generateRoutes(pages);
   const code = generateClientCode(routes, options);
 
-  const expectedRoutes = [
+  const expectedRoutes = sortRoutes([
     {
       name: '/blog',
       children: [
@@ -249,7 +250,7 @@ test('Route async', async () => {
         },
       ],
     },
-  ];
+  ]);
 
   expectedRoutes.forEach((i) =>
     assert.equal(
@@ -259,25 +260,27 @@ test('Route async', async () => {
   );
 
   const expectedCode = `import {lazy} from "solid-js";
-const routes = [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/index.tsx"))},
-{ path: "/components", component: lazy(() => import("${currentPath}/test/assets/pages/components.tsx"))},
-{ path: "/blog", children: [{ path: "/today", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/today/index.jsx"))},
+const routes = [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/index.tsx"))},
+{ path: "/about", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/about/index.js"))},
 ]},
-{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/blog/index.jsx"))},
-{ path: "/:id", component: lazy(() => import("${currentPath}/test/assets/pages/blog/[id].jsx"))},
+{ path: "/blog", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/index.jsx"))},
+{ path: "/today", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/today/index.jsx"))},
 ]},
-{ path: "/about", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/about/index.js"))},
+{ path: "/:id", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/blog/[id].jsx"))},
 ]},
-{ path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[...all].tsx"))},
-{ path: "/:sensor", children: [{ path: "/current", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/current.ts"))},
-{ path: "/*all", component: lazy(() => import("${currentPath}/test/assets/pages/[sensor]/[...all].ts"))},
+{ path: "/components", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/components.tsx"))},
+{ path: "/:sensor", children: [{ path: "/current", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[sensor]/current.ts"))},
+{ path: "/*all", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[sensor]/[...all].ts"))},
 ]},
-{ path: "/:userId", component: lazy(() => import("${currentPath}/test/assets/pages/[userId].tsx"))},
-{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("${currentPath}/test/assets/pages/__test__/index.js"))},
+{ path: "/:userId", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[userId].tsx"))},
+{ path: "/*all", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/[...all].tsx"))},
+{ path: "/__test__", children: [{ path: "/", component: lazy(() => import("G:/source/Repos/vite-plugin-pages-solid/test/assets/pages/__test__/index.js"))},
 ]},
 ];
 
 export default routes;`;
+
+  //console.log(code);
 
   assert.fixture(code, expectedCode);
 });

@@ -43,8 +43,10 @@ function compileRouteItem(route: PrepRoute, mode: ImportMode): StringifyOutput {
   let out = '{ ';
   const imp: string[] = [];
 
+  route = sortRoute(route);
+
   if (haveChildren(route as FileOutput)) {
-    const children = route.children?.sort(sortRoute).map((o) => compileRouteItem(o, mode)) as StringifyOutput[];
+    const children = route.children?.map((o) => compileRouteItem(o, mode)) as StringifyOutput[];
     const nestedRoutes: string[] = [...children.map((o) => o.out)];
     if (mode === 'sync') {
       out += `path: "${route.name}", children: [${nestedRoutes.join('')}]`;
