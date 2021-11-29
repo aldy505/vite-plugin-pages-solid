@@ -1,7 +1,7 @@
 {
   "*.(ts|tsx|js|jsx)": [
     "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore ",
-    "eslint --check --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore "
+    "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore "
   ],
   ".(ts|tsx|js|jsx|json|yml|yaml|md)": [
     "prettier --write --ignore-path .gitignore ",
