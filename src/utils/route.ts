@@ -54,8 +54,8 @@ export function sortRoute(r: PrepRoute): PrepRoute {
  */
 export function sortRoutes(r: PrepRoute[]): PrepRoute[] {
   r.sort(routeSorter).forEach((route) => {
-    // deepcode ignore MissingArgument: It ain't missing
     if (route.children) {
+      // deepcode ignore MissingArgument: It ain't missing
       sortRoutes(route.children);
     }
   });
