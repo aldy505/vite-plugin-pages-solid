@@ -13,7 +13,7 @@
 
 This is a kind of fork of [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages) for Vue, but if I was about to add a Solid implementation to it, I will break a lot of things. Hence, it should be a good thing to create a new repository for it.
 
-**⚠️ Expect a lot of breaking changes, until at least 0.5.x**
+## **⚠️ Expect a lot of breaking changes, until at least 0.5.x**
 
 ## Getting Started
 
@@ -22,8 +22,8 @@ This is a kind of fork of [vite-plugin-pages](https://github.com/hannoeru/vite-p
 Install:
 
 ```bash
-$ npm install -D vite-plugin-pages-solid
-$ npm install solid-app-router
+npm install -D vite-plugin-pages-solid
+npm install solid-app-router
 ```
 
 Add to your `vite.config.js`:
@@ -46,7 +46,7 @@ By default a page is a Solid component exported from a `.jsx`, `.js`, `.ts` or `
 You can access the generated routes by importing the `virtual:generated-pages-solid`
 module in your application.
 
-### solid
+### **Solid**
 
 ```js
 import { useRoutes } from 'solid-app-router';
@@ -57,7 +57,7 @@ const Routes = useRoutes(routes);
 <Routes {routes} />
 ```
 
-**Type**
+### **Type**
 
 ```ts
 // vite-env.d.ts
@@ -156,7 +156,7 @@ export default {
 - **Type:** `string`
 - **Default:** `'src/pages'`
 
-Relative path to the pages directory. DOES NOT supports globs.
+Relative path to the pages directory. _**DOES NOT**_ supports globs.
 
 Can be:
 
@@ -165,8 +165,7 @@ Can be:
 ### extensions
 
 - **Type:** `string[]`
-- **Default:**
-  - `['js', 'jsx', 'ts', 'tsx']`
+- **Default:** `['js', 'jsx', 'ts', 'tsx']`
 
 An array of valid file extensions for pages.
 
