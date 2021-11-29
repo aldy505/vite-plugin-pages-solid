@@ -10,6 +10,7 @@ export function pathToName(filepath: string): string {
   return filepath.replace(/[_.\-\\/]/g, '_').replace(/[[:\]()]/g, '$');
 }
 
+/* c8 ignore next */
 export function replaceSquareBrackets(bundle: OutputBundle): void {
   const files = Object.keys(bundle).map((i) => basename(i));
   for (const chunk of Object.values(bundle)) {
