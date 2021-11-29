@@ -6,7 +6,8 @@ import type { PrepRoute } from '../types/route';
  * @returns The value of the route
  */
 export function routeValue(route: PrepRoute): number {
-  if (route.name === '/') return -1;
+  if (route.name === '/') return -2;
+  if (route.name === 'index' || route.name === '/index') return -1;
   if (/^\/[A-Za-z0-9\-_]/.test(route.name)) return 0;
   // 1 is the value of an unknown type of route.
   if (/^\/:.*\?$/.test(route.name)) return 2;
@@ -18,7 +19,8 @@ export function routeValue(route: PrepRoute): number {
 
 /**
  * Sort function for prioritizing routes.\
- * First, `/` only should be prioritized (value -1).\
+ * First, `/` only should be prioritized (value -2).\
+ * Then, `/index` and `index` only are prioritized (value -1).\
  * Then, it should prioritize `/about`, `/contact` (value 0).\
  * Then, it should prioritize `/:slug`, `/:something` (value 3).\
  * Then, it should prioritize `/*`, `/*all` (value 5).\
