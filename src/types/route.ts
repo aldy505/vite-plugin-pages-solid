@@ -2,8 +2,8 @@ import { RouteDefinition } from 'solid-app-router';
 
 export type Route = RouteDefinition;
 
-export interface PreRoute {
+export interface PrepRoute {
   name: string;
   path?: string;
-  children?: PreRoute[];
+  children?: PrepRoute[];
 }

@@ -1,10 +1,10 @@
-import type { PreRoute } from './types/route';
+import type { PrepRoute } from './types/route';
 import type { FileOutput } from './types/page';
-import { isDynamicRoute, isCatchAllRoute } from './utils/validate';
+import { isDynamicRoute, isMultiRoute } from './utils/validate';
 import { stringifyRoutes } from './stringify';
 import { haveChildren } from './crawler/crawler';
 import { extname } from 'path';
-import { sortRoute } from './utils/route';
+import { sortRoutes } from './utils/route';
 import type { ResolvedOptions } from './types/options';
 
 /**
@@ -12,18 +12,18 @@ import type { ResolvedOptions } from './types/options';
  * @param pages
  * @returns
  */
-export function generateRoutes(pages: FileOutput[]): PreRoute[] {
-  const routes: PreRoute[] = [];
+export function generateRoutes(pages: FileOutput[]): PrepRoute[] {
+  const routes: PrepRoute[] = [];
 
   for (let i = 0; i < pages.length; i++) {
     const node = pages[i].path.split('/')[pages[i].path.split('/').length - 1];
     const fileExt = extname(node);
     const isDynamic = isDynamicRoute(node.replace(fileExt, ''));
-    const isCatchAll = isCatchAllRoute(node.replace(fileExt, ''));
+    const isMulti = isMultiRoute(node.replace(fileExt, ''));
     const normalizedName = isDynamic
       ? node
           .replace(fileExt, '')
-          .replace(/^\[(\.{3})?/, '')
+          .replace(/^\[(?:\.{3})?/, '')
           .replace(/\]$/, '')
       : node.replace(fileExt, '');
     const normalizedPath = normalizedName.toLowerCase();
@@ -31,8 +31,8 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
     if (normalizedPath === 'index') {
       name = '/';
     } else {
-      if (isCatchAll) {
-        name = '/*all';
+      if (isMulti) {
+        name = `/*${normalizedName}`;
       } else if (isDynamic) {
         name = `/:${normalizedName}`;
       } else {
@@ -59,12 +59,12 @@ export function generateRoutes(pages: FileOutput[]): PreRoute[] {
 
 /**
  * This pretty much acts as a final codegen for it to be executed by Vite.
- * @param {PreRoute[]} routes
+ * @param {PrepRoute[]} routes
  * @returns {String}
  */
-export function generateClientCode(routes: PreRoute[], options: ResolvedOptions): string {
+export function generateClientCode(routes: PrepRoute[], options: ResolvedOptions): string {
   const { importMode } = options;
-  const { imp, out } = stringifyRoutes(routes.sort(sortRoute), importMode);
+  const { imp, out } = stringifyRoutes(sortRoutes(routes), importMode);
   let code = '';
 
   if (importMode === 'async') {

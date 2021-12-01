@@ -2,14 +2,14 @@ import type { ResolvedOptions } from './types/options';
 import type { FileOutput } from './types/page';
 import { resolve } from 'path';
 import { getPageFiles } from './files';
-import { slash } from './utils/convert';
+import { normalizePath } from 'vite';
 
 export async function resolvePages(options: ResolvedOptions): Promise<FileOutput[]> {
   const pages: FileOutput[] = [];
 
   const pageDirFiles = {
     pageDir: options.pagesDir,
-    files: await getPageFiles(slash(resolve(options.root, options.pagesDir)), options),
+    files: await getPageFiles(normalizePath(resolve(options.root, options.pagesDir)), options),
   };
 
   for (const file of pageDirFiles.files) {

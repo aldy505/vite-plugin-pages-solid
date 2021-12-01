@@ -1,10 +1,10 @@
-import type { PreRoute } from '../src/types/route';
+import type { PrepRoute } from '../src/types/route';
 import { stringifyRoutes } from '../src/stringify';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
 test('Sync', () => {
-  const route: PreRoute[] = [
+  const route: PrepRoute[] = [
     { name: 'index', path: '/home/foo/bar/index.tsx' },
     {
       name: 'about',
@@ -34,7 +34,7 @@ test('Sync', () => {
 });
 
 test('Async', () => {
-  const route: PreRoute[] = [
+  const route: PrepRoute[] = [
     { name: 'index', path: '/home/foo/bar/index.tsx' },
     {
       name: 'about',

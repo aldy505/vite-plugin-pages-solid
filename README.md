@@ -1,8 +1,8 @@
 # vite-plugin-pages-solid
 
-[![npm](https://img.shields.io/npm/v/vite-plugin-pages-solid?style=flat-square)
-![npm bundle size](https://img.shields.io/bundlephobia/min/vite-plugin-pages-solid?style=flat-square)
-![npm](https://img.shields.io/npm/dm/vite-plugin-pages-solid?style=flat-square)](https://www.npmjs.com/package/vite-plugin-pages-solid)
+[![npm](https://img.shields.io/npm/v/vite-plugin-pages-solid?style=flat-square)](https://www.npmjs.com/package/vite-plugin-pages-solid)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/vite-plugin-pages-solid?style=flat-square)](https://bundlephobia.com/package/vite-plugin-pages-solid)
+[![npm](https://img.shields.io/npm/dm/vite-plugin-pages-solid?style=flat-square)](https://www.npmjs.com/package/vite-plugin-pages-solid)
 [![Codecov](https://img.shields.io/codecov/c/github/aldy505/vite-plugin-pages-solid?style=flat-square)](https://codecov.io/gh/aldy505/vite-plugin-pages-solid)
 [![GitHub branch checks state](https://img.shields.io/github/checks-status/aldy505/vite-plugin-pages-solid/master?style=flat-square)](https://github.com/aldy505/vite-plugin-pages-solid/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/aldy505/vite-plugin-pages-solid/badge)](https://www.codefactor.io/repository/github/aldy505/vite-plugin-pages-solid)
@@ -13,7 +13,7 @@
 
 This is a kind of fork of [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages) for Vue, but if I was about to add a Solid implementation to it, I will break a lot of things. Hence, it should be a good thing to create a new repository for it.
 
-**⚠ Expect a lot of breaking changes, until at least 0.5.x**
+## **⚠️ Expect a lot of breaking changes, until at least 0.5.x**
 
 ## Getting Started
 
@@ -22,8 +22,8 @@ This is a kind of fork of [vite-plugin-pages](https://github.com/hannoeru/vite-p
 Install:
 
 ```bash
-$ npm install -D vite-plugin-pages-solid
-$ npm install solid-app-router
+npm install -D vite-plugin-pages-solid
+npm install solid-app-router
 ```
 
 Add to your `vite.config.js`:
@@ -46,7 +46,7 @@ By default a page is a Solid component exported from a `.jsx`, `.js`, `.ts` or `
 You can access the generated routes by importing the `virtual:generated-pages-solid`
 module in your application.
 
-### solid
+### **Solid**
 
 ```js
 import { useRoutes } from 'solid-app-router';
@@ -57,7 +57,7 @@ const Routes = useRoutes(routes);
 <Routes {routes} />
 ```
 
-**Type**
+### **Type**
 
 ```ts
 // vite-env.d.ts
@@ -156,7 +156,7 @@ export default {
 - **Type:** `string`
 - **Default:** `'src/pages'`
 
-Relative path to the pages directory. DOES NOT supports globs.
+Relative path to the pages directory. _**DOES NOT**_ supports globs.
 
 Can be:
 
@@ -165,8 +165,7 @@ Can be:
 ### extensions
 
 - **Type:** `string[]`
-- **Default:**
-  - `['js', 'jsx', 'ts', 'tsx']`
+- **Default:** `['js', 'jsx', 'ts', 'tsx']`
 
 An array of valid file extensions for pages.
 

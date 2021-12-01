@@ -2,7 +2,6 @@ import { resolve } from 'path';
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { normalizePath } from 'vite';
-import { slash } from '../src/utils/convert';
 import { getPageFiles, getPageDirs, fromSinglePage } from '../src/files';
 import type { ResolvedOptions } from '../src/types/options';
 
@@ -30,44 +29,45 @@ test('getPageFiles', async () => {
       path: `${currentPath}/test/assets/pages/components.tsx`,
     },
     {
+      path: `${currentPath}/test/assets/pages/blog`,
       children: [
         {
           path: `${currentPath}/test/assets/pages/blog/index.jsx`,
         },
         {
-          path: `${currentPath}/test/assets/pages/blog/[id].jsx`,
-        },
-        {
+          path: `${currentPath}/test/assets/pages/blog/today`,
           children: [
             {
               path: `${currentPath}/test/assets/pages/blog/today/index.jsx`,
             },
           ],
-          path: `${currentPath}/test/assets/pages/blog/today`,
+        },
+        {
+          path: `${currentPath}/test/assets/pages/blog/[id].jsx`,
         },
       ],
-      path: `${currentPath}/test/assets/pages/blog`,
     },
     {
+      path: `${currentPath}/test/assets/pages/about`,
       children: [
         {
           path: `${currentPath}/test/assets/pages/about/index.js`,
         },
       ],
-      path: `${currentPath}/test/assets/pages/about`,
     },
     {
+      path: `${currentPath}/test/assets/pages/__test__`,
       children: [
         {
           path: `${currentPath}/test/assets/pages/__test__/index.js`,
         },
       ],
-      path: `${currentPath}/test/assets/pages/__test__`,
     },
     {
       path: `${currentPath}/test/assets/pages/[userId].tsx`,
     },
     {
+      path: `${currentPath}/test/assets/pages/[sensor]`,
       children: [
         {
           path: `${currentPath}/test/assets/pages/[sensor]/current.ts`,
@@ -76,7 +76,6 @@ test('getPageFiles', async () => {
           path: `${currentPath}/test/assets/pages/[sensor]/[...all].ts`,
         },
       ],
-      path: `${currentPath}/test/assets/pages/[sensor]`,
     },
     {
       path: `${currentPath}/test/assets/pages/[...all].tsx`,
@@ -93,7 +92,7 @@ test('getPageFiles', async () => {
 
 test('getPageDirs', async () => {
   const pageDirOptions = {
-    dir: slash(testDeepPagesDir),
+    dir: normalizePath(testDeepPagesDir),
     baseRoute: '',
   };
   const options: ResolvedOptions = {
